@@ -1,12 +1,11 @@
 #include<iostream>
 #include<cstdlib>
 #include<ctime>
+
 using namespace std;
 
 void randData(double *,int,int);
-
 void findRowSum(const double *,double *,int,int);
-
 void showData(double *,int,int);
 
 int main(){
@@ -24,4 +23,30 @@ int main(){
 	showData(result,N,1);
 }
 
-//Write definition of randData(), showData() and findRowSum()
+void randData(double *arr, int N, int M){
+
+	for(int i=0; i<N*M; i++){
+
+		double num = rand()%101/100.00;
+		*(arr+i) = num;
+	}
+}
+
+void showData(double *arr, int N, int M){
+
+	for(int i=0; i<N*M; i++){
+		if(i%M==0 && i!=0)	cout<<endl;
+		cout<<*(arr+i)<<"\t";
+	}
+	cout<<endl;
+}
+
+void findRowSum(const double *arr, double *sum, int N, int M){
+
+	for(int i=0; i<N; i++){
+		for(int j=0; j<M; j++){
+
+			*(sum+i) += *(arr+j+i*M);
+		}
+	}
+}
